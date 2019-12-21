@@ -15,6 +15,9 @@ const trickValues = ['null', 'false', [], {}, 'zero', '0'];
 
 class Question {
     constructor() {
+        this.point = 0;
+        this.logicalOperator = Math.random() > 0.5 ? '&&' : '||';
+
         let randomType = Math.random();
 
         if (randomType <= 0.20) {
@@ -48,7 +51,17 @@ class Question {
     }
 
     ask() {
-        
+        let q;
+        if (this.logicalOperator === '&&') {
+            q = `${this.left} && ${this.right}`;
+        } else {
+            q = `${this.left} || ${this.right}`;
+        }
+        return q;
+    }
+
+    check(response) {
+
     }
 
     values() {
@@ -58,3 +71,9 @@ class Question {
 
 let q1 = new Question();
 console.log(q1.values());
+console.log(q1.ask());
+console.log(q1.ask());
+console.log(q1.ask());
+console.log(q1.ask());
+console.log(q1.ask());
+console.log(q1.ask());
