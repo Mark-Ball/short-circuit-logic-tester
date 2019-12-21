@@ -51,17 +51,17 @@ class Question {
     }
 
     ask() {
-        let q;
-        if (this.logicalOperator === '&&') {
-            q = `${this.left} && ${this.right}`;
-        } else {
-            q = `${this.left} || ${this.right}`;
-        }
-        return q;
+        return this.logicalOperator === '&&' ?
+             `${this.left} && ${this.right}` :
+             `${this.left} || ${this.right}`;
     }
 
-    check(response) {
+    getCorrectAnswer() {
+        const correctAnswer = this.logicalOperator === '&&' ?
+            this.left && this.right :
+            this.left || this.right;
 
+        return correctAnswer;
     }
 
     values() {
@@ -73,7 +73,4 @@ let q1 = new Question();
 console.log(q1.values());
 console.log(q1.ask());
 console.log(q1.ask());
-console.log(q1.ask());
-console.log(q1.ask());
-console.log(q1.ask());
-console.log(q1.ask());
+console.log(q1.getCorrectAnswer());
