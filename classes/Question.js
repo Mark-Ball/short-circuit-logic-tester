@@ -51,9 +51,12 @@ class Question {
     }
 
     ask() {
-        return this.logicalOperator === '&&' ?
+        console.log(this.logicalOperator === '&&' ?
              `${this.left} && ${this.right}` :
-             `${this.left} || ${this.right}`;
+             `${this.left} || ${this.right}`);
+        // return this.logicalOperator === '&&' ?
+        //      `${this.left} && ${this.right}` :
+        //      `${this.left} || ${this.right}`;
     }
 
     getCorrectAnswer() {

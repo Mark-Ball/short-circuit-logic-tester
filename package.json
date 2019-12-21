@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Mark-Ball/short-circuit-logic-tester/issues"
   },
-  "homepage": "https://github.com/Mark-Ball/short-circuit-logic-tester#readme"
+  "homepage": "https://github.com/Mark-Ball/short-circuit-logic-tester#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
