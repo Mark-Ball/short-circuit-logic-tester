@@ -13,6 +13,7 @@ class Quiz {
     run() {
         for (let qstn of this.questions) {
             let response = readlineSync.question(qstn.ask());
+            qstn.evaluateResponse(response);
         }
     }
 

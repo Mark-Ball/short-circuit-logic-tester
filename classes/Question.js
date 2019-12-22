@@ -1,6 +1,6 @@
-const falsyValues = [0, null, undefined, '', false, NaN];
-const truthyValues = [1, 5, 'hello', 7, true];
-const trickValues = ['null', 'false', [], {}, 'zero', '0'];
+const falsyValues = [0, null, undefined, "''", false, NaN];
+const truthyValues = [1, 5, "'hello'", 7, true];
+const trickValues = ["'0'", "'null'", "'undefined'", "'empty string'", "'false'", "'true'", [], {}, "'zero'"];
 
 // 50% &&, 50% ||
 // 20% falsy vs falsy
@@ -64,12 +64,15 @@ class Question {
             this.left && this.right :
             this.left || this.right;
 
-        return correctAnswer;
+        // everything passed on from readline sync is a string
+        // therefore answer must be a string
+        return `${correctAnswer}`;
     }
     
     evaluateResponse(response) {
-        if (response === getCorrectAnswer()) {
+        if (response === this.getCorrectAnswer()) {
             this.point = 1;
+            console.log('correct');
         }
     }
 }
