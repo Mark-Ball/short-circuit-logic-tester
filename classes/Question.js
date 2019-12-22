@@ -1,7 +1,7 @@
-const falsyValues = [0, null, undefined, "''", false, NaN];
-const truthyValues = [1, 5, "'hello'", 7, true];
-const trickValues = ["'0'", "'null'", "'undefined'", "'empty string'", "'false'", "'true'", [], {}, "'zero'"];
-
+const falsyValues = [0, null, undefined, '', false, NaN];
+const truthyValues = [1, 5, "\"hello\"", 7, 12, 23, "\"cat\"", "\"end\"", "\"left\"", "\"right\"", "\"k\"", true];
+const trickValues = ["\"0\"", "\"null\"", "\"undefined\"", "\"empty string\"", "\"false\"", "\"true\"", "\"zero\"", "[]", "{}"];
+// 
 // 50% &&, 50% ||
 // 20% falsy vs falsy
 // 20% falsy vs truthy
@@ -54,9 +54,6 @@ class Question {
         console.log(this.logicalOperator === '&&' ?
              `${this.left} && ${this.right}` :
              `${this.left} || ${this.right}`);
-        // return this.logicalOperator === '&&' ?
-        //      `${this.left} && ${this.right}` :
-        //      `${this.left} || ${this.right}`;
     }
 
     getCorrectAnswer() {
@@ -72,7 +69,7 @@ class Question {
     evaluateResponse(response) {
         if (response === this.getCorrectAnswer()) {
             this.point = 1;
-            console.log('correct');
+            console.log('Correct!');
         }
     }
 }

@@ -14,7 +14,9 @@ class Quiz {
         for (let qstn of this.questions) {
             let response = readlineSync.question(qstn.ask());
             qstn.evaluateResponse(response);
+            this.score += qstn.point;
         }
+        console.log(`Your score was: ${this.score}/10`);
     }
 
 }
