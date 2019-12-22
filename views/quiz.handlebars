@@ -1,1 +1,21 @@
 <h1>Quiz</h1>
+
+<ul>
+{{#each quiz1.questions }}
+    <li>{{this.left}} {{this.right}}</li>
+{{/each}}
+</ul>
+
+<div id='timer'>1</div>
+
+<script>
+    let timeSinceLoad = 0;
+    const timer = document.getElementById('timer');
+
+    function updateTimer() {
+        timeSinceLoad += 1;
+        timer.innerHTML = timeSinceLoad;
+    }
+
+    setInterval(() => { updateTimer() }, 1000);
+</script>

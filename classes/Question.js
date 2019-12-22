@@ -51,9 +51,9 @@ class Question {
     }
 
     ask() {
-        console.log(this.logicalOperator === '&&' ?
+        return this.logicalOperator === '&&' ?
              `${this.left} && ${this.right}` :
-             `${this.left} || ${this.right}`);
+             `${this.left} || ${this.right}`;
     }
 
     getCorrectAnswer() {
