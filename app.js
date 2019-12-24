@@ -1,8 +1,3 @@
-// const Quiz = require('./classes/Quiz');
-
-// const quiz1 = new Quiz();
-// quiz1.run();
-
 const express = require('express');
 const exphbs = require('express-handlebars')
 const routes = require('./routes');
@@ -11,6 +6,8 @@ const app = express();
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+
+app.use(express.static('public'));
 
 app.use(routes);
 

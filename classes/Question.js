@@ -48,13 +48,17 @@ class Question {
             this.left = trickValues[Math.floor(Math.random() * trickValues.length + 1)];
             this.right = trickValues[Math.floor(Math.random() * trickValues.length + 1)];
         }
-    }
 
-    ask() {
-        return this.logicalOperator === '&&' ?
+        this.text = this.logicalOperator === '&&' ?
              `${this.left} && ${this.right}` :
              `${this.left} || ${this.right}`;
     }
+
+    // ask() {
+    //     return this.logicalOperator === '&&' ?
+    //          `${this.left} && ${this.right}` :
+    //          `${this.left} || ${this.right}`;
+    // }
 
     getCorrectAnswer() {
         const correctAnswer = this.logicalOperator === '&&' ?

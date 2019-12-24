@@ -5,9 +5,8 @@ function landing(req, res) {
 }
 
 function quiz(req, res) {
-    const quiz1 = new Quiz();
-    // console.log(quiz1.questions[0].ask());
-    res.render('quiz', { quiz1 });
+    const { questions } = new Quiz();
+    res.render('quiz', { questions });
 }
 
 module.exports = {

@@ -1,21 +1,14 @@
 <h1>Quiz</h1>
 
-<ul>
-{{#each quiz1.questions }}
-    <li>{{this.left}} {{this.right}}</li>
-{{/each}}
-</ul>
-
+<p>Time</p>
 <div id='timer'>1</div>
 
-<script>
-    let timeSinceLoad = 0;
-    const timer = document.getElementById('timer');
+{{#each questions}}
+<div class='hidden' id='question{{@index}}'>{{this.text}}</div>
+{{/each}}
+<form>
+    <input type='text'/>
+    <input type='submit'/>
+</form>
 
-    function updateTimer() {
-        timeSinceLoad += 1;
-        timer.innerHTML = timeSinceLoad;
-    }
-
-    setInterval(() => { updateTimer() }, 1000);
-</script>
+<script src='/scripts/quizScript.js'></script>
