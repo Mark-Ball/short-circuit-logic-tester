@@ -50,24 +50,12 @@ class Question {
         }
 
         this.text = this.logicalOperator === '&&' ?
-             `${this.left} && ${this.right}` :
-             `${this.left} || ${this.right}`;
-    }
+            `${this.left} && ${this.right}` :
+            `${this.left} || ${this.right}`;
 
-    // ask() {
-    //     return this.logicalOperator === '&&' ?
-    //          `${this.left} && ${this.right}` :
-    //          `${this.left} || ${this.right}`;
-    // }
-
-    getCorrectAnswer() {
-        const correctAnswer = this.logicalOperator === '&&' ?
+        this.correctAnswer = this.logicalOperator === '&&' ?
             this.left && this.right :
             this.left || this.right;
-
-        // everything passed on from readline sync is a string
-        // therefore answer must be a string
-        return `${correctAnswer}`;
     }
     
     evaluateResponse(response) {
