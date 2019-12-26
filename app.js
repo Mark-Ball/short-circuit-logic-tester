@@ -9,6 +9,8 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
 
+app.use(express.json());
+
 app.use(routes);
 
 app.listen(process.env.PORT, () => { console.log(`Listening on port ${process.env.PORT}`) });
