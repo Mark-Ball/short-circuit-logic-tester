@@ -16,23 +16,28 @@ function leaderboard(req, res) {
 }
 
 function checkResponses(req, res) {
-    console.log('checkResponses hit');
     let score = 0;
+    console.log(req.body);
     for (i in quiz1.questions) {
-        console.log(`"${quiz1.questions[i].correctAnswer}"`);
-        if (`"${quiz1.questions[i].correctAnswer}"` === req.body[i]) {
+        console.log(`Answer: "${quiz1.questions[i].correctAnswer}"`);
+        console.log(`Response: "${req.body.responses[i]}"`);
+        console.log(`"${quiz1.questions[i].correctAnswer}"` === `"${req.body.responses[i]}"`);
+        if (`"${quiz1.questions[i].correctAnswer}"` === `"${req.body.responses[i]}"`) {
             score += 1;
         }
     }
-    console.log('Responses:');
-    console.log(req.body);
     console.log(score);
-    res.render('leaderboard');
+    res.render('report');
+}
+
+function report(req, res) {
+    res.render('report');
 }
 
 module.exports = {
     landing,
     quiz,
     leaderboard,
-    checkResponses
+    checkResponses,
+    report
 }

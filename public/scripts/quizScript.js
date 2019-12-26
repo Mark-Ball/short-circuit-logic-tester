@@ -36,5 +36,5 @@ function saveResponse() {
 }
 
 function sendResponses() {
-    axios.post('/quiz', responses);
+    axios.post('/quiz', { responses: responses, time: timeSinceLoad });
 }
