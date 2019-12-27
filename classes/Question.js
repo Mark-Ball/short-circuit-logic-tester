@@ -1,6 +1,18 @@
 const falsyValues = [0, null, undefined, '', false, NaN];
 const truthyValues = [1, 5, "\"hello\"", 7, 12, 23, "\"cat\"", "\"end\"", "\"left\"", "\"right\"", "\"k\"", true];
 const trickValues = ["\"0\"", "\"null\"", "\"undefined\"", "\"empty string\"", "\"false\"", "\"true\"", "\"zero\"", "[]", "{}"];
+
+function randomFalsy() {
+    return falsyValues[Math.floor(Math.random() * falsyValues.length)];
+}
+
+function randomTruthy() {
+    return truthyValues[Math.floor(Math.random() * truthyValues.length)];
+}
+
+function randomTrick() {
+    return trickValues[Math.floor(Math.random() * trickValues.length)];
+}
 // 
 // 50% &&, 50% ||
 // 20% falsy vs falsy
@@ -21,32 +33,32 @@ class Question {
         let randomType = Math.random();
 
         if (randomType <= 0.20) {
-            this.left = falsyValues[Math.floor(Math.random() * falsyValues.length + 1)];
-            this.right = falsyValues[Math.floor(Math.random() * falsyValues.length + 1)];
+            this.left = randomFalsy();
+            this.right = randomFalsy();
         } else if (randomType <= 0.40) {
-            this.left = falsyValues[Math.floor(Math.random() * falsyValues.length + 1)];
-            this.right = truthyValues[Math.floor(Math.random() * truthyValues.length + 1)];
+            this.left = randomFalsy();
+            this.right = randomTruthy();
         } else if (randomType <= 0.60) {
-            this.left = truthyValues[Math.floor(Math.random() * truthyValues.length + 1)];
-            this.right = falsyValues[Math.floor(Math.random() * falsyValues.length + 1)];
+            this.left = randomTruthy();
+            this.right = randomFalsy();
         } else if (randomType <= 0.80) {
-            this.left = truthyValues[Math.floor(Math.random() * truthyValues.length + 1)];
-            this.right = truthyValues[Math.floor(Math.random() * truthyValues.length + 1)];
+            this.left = randomTruthy();
+            this.right = randomTruthy();
         } else if (randomType <= 0.84) {
-            this.left = trickValues[Math.floor(Math.random() * trickValues.length + 1)];
-            this.right = falsyValues[Math.floor(Math.random() * falsyValues.length + 1)];
+            this.left = randomTrick();
+            this.right = randomFalsy();
         } else if (randomType <= 0.88) {
-            this.left = trickValues[Math.floor(Math.random() * trickValues.length + 1)];
-            this.right = truthyValues[Math.floor(Math.random() * truthyValues.length + 1)];
+            this.left = randomTrick();
+            this.right = randomTruthy();
         } else if (randomType <= 0.92) {
-            this.left = falsyValues[Math.floor(Math.random() * falsyValues.length + 1)];
-            this.right = trickValues[Math.floor(Math.random() * trickValues.length + 1)];
+            this.left = randomFalsy();
+            this.right = randomTrick();
         } else if (randomType <= 0.96) {
-            this.left = truthyValues[Math.floor(Math.random() * truthyValues.length + 1)];
-            this.right = trickValues[Math.floor(Math.random() * trickValues.length + 1)];
+            this.left = randomTruthy();
+            this.right = randomTrick();
         } else {
-            this.left = trickValues[Math.floor(Math.random() * trickValues.length + 1)];
-            this.right = trickValues[Math.floor(Math.random() * trickValues.length + 1)];
+            this.left = randomTrick();
+            this.right = randomTrick();
         }
 
         this.text = this.logicalOperator === '&&' ?
