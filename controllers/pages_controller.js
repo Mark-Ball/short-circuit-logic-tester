@@ -6,7 +6,6 @@ function landing(req, res) {
 }
 
 function quiz(req, res) {
-    // const { questions } = new Quiz();
     const { questions } = quiz1;
     res.render('quiz', { questions });
 }
@@ -16,18 +15,23 @@ function leaderboard(req, res) {
 }
 
 function checkResponses(req, res) {
-    let score = 0;
-    console.log(req.body);
+    let quizData = { 
+        score: 0,
+        time: req.body.time,
+        responses: req.body.responses,
+        questions: [],
+        answers: []
+    };
+
     for (i in quiz1.questions) {
-        console.log(`Answer: "${quiz1.questions[i].correctAnswer}"`);
-        console.log(`Response: "${req.body.responses[i]}"`);
-        console.log(`"${quiz1.questions[i].correctAnswer}"` === `"${req.body.responses[i]}"`);
+        quizData.questions.push(quiz1.questions[i].text);
+        quizData.answers.push(quiz1.questions[i].correctAnswer);
         if (`"${quiz1.questions[i].correctAnswer}"` === `"${req.body.responses[i]}"`) {
-            score += 1;
+            quizData.score += 1;
         }
     }
-    console.log(score);
-    res.render('report');
+    console.log(quizData);
+    res.redirect('report');
 }
 
 function report(req, res) {
