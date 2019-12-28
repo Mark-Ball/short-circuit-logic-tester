@@ -15,25 +15,24 @@ function leaderboard(req, res) {
 }
 
 function checkResponses(req, res) {
-    console.log('checkResponses hit');
-    console.log(req.body.responses);
-    let quizResponse = { 
+    const { time, responses } = JSON.parse(req.body.data[0]);
+    let quizResponse = {
         score: 0,
-        time: req.body.time,
-        responses: req.body.responses,
+        time: time,
+        responses: responses,
         questions: [],
-        answers: [],
-        redirectUrl: '/report'
+        answers: []
     };
 
     for (i in quiz1.questions) {
         quizResponse.questions.push(quiz1.questions[i].text);
         quizResponse.answers.push(quiz1.questions[i].correctAnswer);
-        if (`"${quiz1.questions[i].correctAnswer}"` === `"${req.body.responses[i]}"`) {
+        if (`"${quiz1.questions[i].correctAnswer}"` === `"${responses[i]}"`) {
             quizResponse.score += 1;
         }
     }
-    res.send({ quizResponse });
+
+    res.render('report', { quizResponse });
 }
 
 function report(req, res) {
@@ -45,6 +44,5 @@ module.exports = {
     quiz,
     leaderboard,
     checkResponses,
-    report,
-    test
+    report
 }
