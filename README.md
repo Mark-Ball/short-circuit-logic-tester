@@ -55,3 +55,44 @@ This will allow the public directory and any sub-directories to be accessible on
 ```HTML
 <script src='/scripts/quizScript.js'></script>
 ```
+
+### 2. res.redirect fails after axios post request in backend
+
+This problem can be recreated by having an axios get or post request in the backend.
+```Javascript
+axios.post('/quiz', { responses: responses, time: timeSinceLoad })
+```
+
+This sends a post request to the '/quiz' route with some data. This then hits the checkResponses associated with the route. In function we manipulate the data, then attempt to redirect to another route, but this fails.
+```Javascript
+function checkResponses(req, res) {
+    // program logic
+    res.redirect('/report');
+}
+```
+
+It fails because AJAX cannot change the page location, only send a request and get a response. We need to perform the redirect on the client side. This is done in the ```.then``` block after the ```axios.post```.
+
+Firstly, because we used axios to trigger the checkReponses method, we must send a response in that method. Inside that object we send back the endpoint as a string (redirectUrl).
+```Javascript
+function checkResponses(req, res) {
+    let quizResponse = { 
+        score: 0,
+        time: req.body.time,
+        responses: req.body.responses,
+        questions: [],
+        answers: [],
+        redirectUrl: '/report'
+    };
+
+    // function logic
+    
+    res.send({ quizResponse });
+}
+```
+
+Secondly, in our ```.then```, we use ```window.location``` to redirect.
+```Javascript
+axios.post('/quiz', { responses: responses, time: timeSinceLoad })
+    .then((res) => { window.location = res.data.quizResponse.redirectUrl });
+```

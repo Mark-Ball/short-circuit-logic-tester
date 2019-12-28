@@ -15,7 +15,8 @@ document.querySelector('input[type=submit]').addEventListener("click", () => {
 
     saveResponse();
     if (questionCounter >= 9) {
-        sendResponses()
+        document.querySelector('#responses').value = { time: timeSinceLoad, responses: responses };
+        document.querySelector('#responsesForm').submit();
     }
     document.querySelector('input[type=text]').value = '';
     toggleHide(questionCounter);
@@ -36,5 +37,6 @@ function saveResponse() {
 }
 
 function sendResponses() {
-    axios.post('/quiz', { responses: responses, time: timeSinceLoad });
+    axios.post('/quiz', { responses: responses, time: timeSinceLoad })
+        .then((res) => { window.location = res.data.quizResponse.redirectUrl });
 }
