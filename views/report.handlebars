@@ -1,11 +1,27 @@
 <h1>Report</h1>
 
-<h2>Score: {{ quizResponse.score }}</h2>
+<div>
+    <p>Score: {{ quizResponse.score }}/10</p>
+</div>
+<div>
+    <p>Time: {{ quizResponse.time }}s</p>
+</div>
 
-<h2>Time: {{ quizResponse.time }}</h2>
-
-<h2>Questions: {{quizResponse.questions}}</h2>
-
-<h2>Responses: {{quizResponse.responses}}</h2>
-
-<h2>Answers: {{quizResponse.answers}}</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Response</th>
+            <th>Answer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each quizResponse.questions}}
+            <tr>
+                <td>{{this.text}}</td>
+                <td>{{this.response}}</td>
+                <td>{{this.answer}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

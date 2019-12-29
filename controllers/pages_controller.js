@@ -19,17 +19,19 @@ function checkResponses(req, res) {
     let quizResponse = {
         score: 0,
         time: time,
-        responses: responses,
-        questions: [],
-        answers: []
+        questions: []
     };
 
     for (i in quiz1.questions) {
-        quizResponse.questions.push(quiz1.questions[i].text);
-        quizResponse.answers.push(quiz1.questions[i].correctAnswer);
+        let questionData = {};
+        questionData.text = quiz1.questions[i].text;
+        questionData.answer = quiz1.questions[i].correctAnswer;
+        questionData.response = responses[i];
+        quizResponse.questions.push(questionData);
+
         if (`"${quiz1.questions[i].correctAnswer}"` === `"${responses[i]}"`) {
             quizResponse.score += 1;
-        }
+        }       
     }
 
     res.render('report', { quizResponse });
