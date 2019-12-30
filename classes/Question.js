@@ -13,7 +13,7 @@ function randomTruthy() {
 function randomTrick() {
     return trickValues[Math.floor(Math.random() * trickValues.length)];
 }
-// 
+
 // 50% &&, 50% ||
 // 20% falsy vs falsy
 // 20% falsy vs truthy
@@ -27,7 +27,6 @@ function randomTrick() {
 
 class Question {
     constructor() {
-        this.point = 0;
         this.logicalOperator = Math.random() > 0.5 ? '&&' : '||';
 
         let randomType = Math.random();
@@ -68,13 +67,6 @@ class Question {
         this.correctAnswer = this.logicalOperator === '&&' ?
             this.left && this.right :
             this.left || this.right;
-    }
-    
-    evaluateResponse(response) {
-        if (response === this.getCorrectAnswer()) {
-            this.point = 1;
-            console.log('Correct!');
-        }
     }
 }
 
