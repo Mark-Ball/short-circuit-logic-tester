@@ -60,9 +60,23 @@ class Question {
             this.right = randomTrick();
         }
 
-        this.text = this.logicalOperator === '&&' ?
-            `${this.left} && ${this.right}` :
-            `${this.left} || ${this.right}`;
+        if (this.logicalOperator === '&&') {
+            if (this.left === '') {
+                this.text = `"${this.left}" && ${this.right}`
+            } else if (this.right === '') {
+                this.text = `${this.left} && "${this.right}"`
+            } else {
+                this.text = `${this.left} && ${this.right}`
+            }
+        } else {
+            if (this.left === '') {
+                this.text = `"${this.left}" || ${this.right}`
+            } else if (this.right === '') {
+                this.text = `${this.left} || "${this.right}"`
+            } else {
+                this.text = `${this.left} || ${this.right}`
+            }
+        }
 
         this.correctAnswer = this.logicalOperator === '&&' ?
             this.left && this.right :
