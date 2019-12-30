@@ -1,6 +1,6 @@
 const falsyValues = [0, null, undefined, '', false, NaN];
-const truthyValues = [1, 5, "\"hello\"", 7, 12, 23, "\"cat\"", "\"end\"", "\"left\"", "\"right\"", "\"k\"", true];
-const trickValues = ["\"0\"", "\"null\"", "\"undefined\"", "\"empty string\"", "\"false\"", "\"true\"", "\"zero\"", "[]", "{}"];
+const truthyValues = [1, 5, "\"hello\"", 7, 12, 23, "\"cat\"", "\"left\"", "\"right\"", "\"k\"", true];
+const trickValues = ["\"0\"", "\"null\"", "\"undefined\"", "\"false\"", "\"true\"", "\"zero\"", "[]", "{}"];
 
 function randomFalsy() {
     return falsyValues[Math.floor(Math.random() * falsyValues.length)];

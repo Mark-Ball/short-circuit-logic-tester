@@ -1,11 +1,12 @@
 const Quiz = require('./../classes/Quiz');
-const quiz1 = new Quiz();
+let quiz1;
 
 function landing(req, res) {
     res.render('landing');
 }
 
 function quiz(req, res) {
+    quiz1 = new Quiz();
     const { questions } = quiz1;
     res.render('quiz', { questions });
 }
@@ -25,7 +26,7 @@ function checkResponses(req, res) {
     for (i in quiz1.questions) {
         let questionData = {};
         questionData.text = quiz1.questions[i].text;
-        questionData.answer = quiz1.questions[i].correctAnswer;
+        questionData.answer = `${quiz1.questions[i].correctAnswer}`;
         questionData.response = responses[i];
         quizResponse.questions.push(questionData);
 
