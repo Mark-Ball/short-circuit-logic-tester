@@ -61,7 +61,9 @@ class Question {
         }
 
         if (this.logicalOperator === '&&') {
-            if (this.left === '') {
+            if (this.left === '' && this.right === '') {
+                this.text = `"${this.left}" && "${this.right}"`
+            } else if (this.left === '') {
                 this.text = `"${this.left}" && ${this.right}`
             } else if (this.right === '') {
                 this.text = `${this.left} && "${this.right}"`
@@ -69,7 +71,9 @@ class Question {
                 this.text = `${this.left} && ${this.right}`
             }
         } else {
-            if (this.left === '') {
+            if (this.left === '' && this.right === '') {
+                this.text = `"${this.left}" || "${this.right}"`
+            } else if (this.left === '') {
                 this.text = `"${this.left}" || ${this.right}`
             } else if (this.right === '') {
                 this.text = `${this.left} || "${this.right}"`
@@ -81,6 +85,11 @@ class Question {
         this.correctAnswer = this.logicalOperator === '&&' ?
             this.left && this.right :
             this.left || this.right;
+
+        // logic to handle the case where the answer is an empty string
+        if (this.correctAnswer === '') {
+            this.correctAnswer = '""';
+        }
     }
 }
 

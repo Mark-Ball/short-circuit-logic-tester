@@ -27,6 +27,9 @@ function checkResponses(req, res) {
         let questionData = {};
         questionData.text = quiz1.questions[i].text;
         questionData.answer = `${quiz1.questions[i].correctAnswer}`;
+        if (questionData.answer === '') {
+            questionData.answer = '""';
+        }
         questionData.response = responses[i];
         quizResponse.questions.push(questionData);
 
@@ -34,6 +37,8 @@ function checkResponses(req, res) {
             quizResponse.score += 1;
         }       
     }
+    console.log(quizResponse);
+    console.log(quiz1.questions);
 
     res.render('report', { quizResponse });
 }
