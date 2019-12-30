@@ -1,4 +1,5 @@
 const Quiz = require('./../classes/Quiz');
+const ScorerModel = require('./../database/models/scorer_model');
 let quiz1;
 
 function landing(req, res) {
@@ -9,10 +10,6 @@ function quiz(req, res) {
     quiz1 = new Quiz();
     const { questions } = quiz1;
     res.render('quiz', { questions });
-}
-
-function leaderboard(req, res) {
-    res.render('leaderboard');
 }
 
 function checkResponses(req, res) {
@@ -37,9 +34,6 @@ function checkResponses(req, res) {
             quizResponse.score += 1;
         }       
     }
-    console.log(quizResponse);
-    console.log(quiz1.questions);
-
     res.render('report', { quizResponse });
 }
 
@@ -47,10 +41,26 @@ function report(req, res) {
     res.render('report');
 }
 
+async function highScore(req, res) {
+    console.log('highScore hit');
+    console.log(req.body);
+    await ScorerModel.create({
+        name: req.body.name,
+        score: 5,
+        time: 40
+    });
+    res.redirect('/leaderboard');
+}
+
+function leaderboard(req, res) {
+    res.render('leaderboard');
+}
+
 module.exports = {
     landing,
     quiz,
-    leaderboard,
     checkResponses,
-    report
+    report,
+    highScore,
+    leaderboard
 }

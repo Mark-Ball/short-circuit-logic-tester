@@ -1,10 +1,10 @@
 <h1>Report</h1>
 
 <div>
-    <p>Score: {{ quizResponse.score }}/10</p>
+    <p>Score: {{quizResponse.score}}/10</p>
 </div>
 <div>
-    <p>Time: {{ quizResponse.time }}s</p>
+    <p>Time: {{quizResponse.time}}s</p>
 </div>
 
 <table>
@@ -25,3 +25,12 @@
         {{/each}}
     </tbody>
 </table>
+
+<h3>Enter your name for the leaderboard</h3>
+<form method='POST' action='/leaderboard'>
+    <div>
+        <label for='name'>Name</label>
+        <input type='text' name='name' id='name' />
+    </div>
+    <input type='submit' />    
+</form>
