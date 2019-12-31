@@ -32,6 +32,5 @@ function toggleHide(n) {
 
 function saveResponse() {
     responses.push(document.querySelector('input[type=text]').value);
-    console.log(responses);
     document.querySelector('input[type=text]').value = '';
 }

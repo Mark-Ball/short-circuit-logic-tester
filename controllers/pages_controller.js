@@ -43,10 +43,6 @@ function checkResponses(req, res) {
     res.render('report', { quizResponse });
 }
 
-function report(req, res) {
-    res.render('report');
-}
-
 async function recordScore(req, res) {
     await ScorerModel.create({
         name: req.body.name,
