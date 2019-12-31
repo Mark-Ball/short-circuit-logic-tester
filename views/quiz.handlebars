@@ -1,16 +1,21 @@
-<h1>Quiz</h1>
+<h1>JS Short Circuit Quiz</h1>
 
-<p>Time</p>
-<div id='timer'>0</div>
+<div class='centered'>
+    <p class='no-margin'>Time</p>
+    <div id='timer'>0</div>
+</div>
 
-{{#each questions}}
-    <div class='hidden' id='question{{@index}}'>{{this.text}}</div>
-{{/each}}
+<div class='centered'>
+    {{#each questions}}
+        <div class='hidden questionText' id='question{{@index}}'>{{this.text}}</div>
+    {{/each}}
 
-<form>
-    <input type='text' id='enterResponse'/>
-    <input type='submit' class='hidden'/>
-</form>
+
+    <form>
+        <input type='text' id='enterResponse'/>
+        <input type='submit' class='hidden'/>
+    </form>
+</div>
 
 <form method='POST' action='/quiz' id='dataForm'>
     <input type='hidden' name='data[]' id='data'/>

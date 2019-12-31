@@ -1,7 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins|Rubik&display=swap');
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px;
+}
+
+h1 {
+    font-family: Poppins, sans-serif;
+    text-align: center;
+}
+
+h2, h3 {
+    font-family: Poppins, sans-serif;
+}
+
+label, li, p, a, th, td, input {
+    font-family: Rubik, sans-serif;
+}
+
+a {
+    background-image: linear-gradient(rgb(160, 180, 214), rgb(126, 159, 218));
+    border: 1px solid #D5D5D5;
+    border-radius: 3px;
+    color: black;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 100px;
+    text-align: center;
+    text-decoration: none;
+    width: 200px;
+}
+
+a:hover {
+    background-image: linear-gradient(rgb(203, 206, 212), rgb(178, 193, 221));
+}
+
+.centered {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-around;
+}
+
 .hidden {
     display: none;
 }
 
-p {
-    color: red;
+.no-margin {
+    margin-bottom: 0px;
 }
+
+.questionText {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+#enterResponse {
+    border: 1px solid rgb(131, 131, 131);
+    border-radius: 5px;
+    height: 30px;
+}
+
+#timer {
+    font-size: 50px;
+    margin-bottom: 100px;
+}
+
