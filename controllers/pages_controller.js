@@ -60,7 +60,7 @@ async function leaderboard(req, res) {
         }
         return b.score - a.score
     });
-    let top10 = scores.slice(0, 10);
+    const top10 = scores.slice(0, 10);
     res.render('leaderboard', { top10 });
 }
 
@@ -68,7 +68,6 @@ module.exports = {
     landing,
     quiz,
     checkResponses,
-    report,
     recordScore,
     leaderboard
 }

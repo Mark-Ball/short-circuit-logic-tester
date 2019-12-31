@@ -1,9 +1,9 @@
 let timeSinceLoad = 0;
 const timer = document.getElementById('timer');
 setInterval(() => {
-    timeSinceLoad += 1;
-    timer.innerHTML = timeSinceLoad
-}, 1000);
+    timeSinceLoad += 0.01;
+    timer.innerHTML = timeSinceLoad.toFixed(0);
+}, 10);
 
 let responses = [];
 
@@ -15,7 +15,7 @@ document.querySelector('input[type=submit]').addEventListener("click", () => {
 
     saveResponse();
     if (questionCounter >= 9) {
-        document.querySelector('#data').value = JSON.stringify({ time: timeSinceLoad, responses: responses });
+        document.querySelector('#data').value = JSON.stringify({ time: timeSinceLoad.toFixed(2), responses: responses });
         document.querySelector('#dataForm').submit();
     }
     document.querySelector('input[type=text]').value = '';
