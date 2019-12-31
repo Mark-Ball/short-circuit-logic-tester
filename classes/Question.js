@@ -1,5 +1,5 @@
 const falsyValues = [0, null, undefined, '', false, NaN];
-const truthyValues = [1, 5, "\"hello\"", 7, 12, 23, "\"cat\"", "\"left\"", "\"right\"", "\"k\"", true];
+const truthyValues = [1, 5, "\"hello\"", 7, 12, 23, "\"cat\"", "\"left\"", "\"right\"", "\"ok\"", true];
 const trickValues = ["\"0\"", "\"null\"", "\"undefined\"", "\"false\"", "\"true\"", "\"zero\"", "[]", "{}"];
 
 function randomFalsy() {
@@ -34,6 +34,10 @@ class Question {
         if (randomType <= 0.20) {
             this.left = randomFalsy();
             this.right = randomFalsy();
+            // logic to prevent left and right from being the same
+            while (this.left === this.right) {
+                this.right = randomFalsy();
+            }
         } else if (randomType <= 0.40) {
             this.left = randomFalsy();
             this.right = randomTruthy();
@@ -43,6 +47,9 @@ class Question {
         } else if (randomType <= 0.80) {
             this.left = randomTruthy();
             this.right = randomTruthy();
+            while (this.left === this.right) {
+                this.right = randomTruthy();
+            }
         } else if (randomType <= 0.84) {
             this.left = randomTrick();
             this.right = randomFalsy();
@@ -58,8 +65,13 @@ class Question {
         } else {
             this.left = randomTrick();
             this.right = randomTrick();
+            while (this.left === this.right) {
+                this.right = randomTrick();
+            }
         }
 
+        // logic to handle the empty string because an empty string renders as blank in html
+        // if we have an empty string, we must put it inside another string to get it to render
         if (this.logicalOperator === '&&') {
             if (this.left === '' && this.right === '') {
                 this.text = `"${this.left}" && "${this.right}"`
