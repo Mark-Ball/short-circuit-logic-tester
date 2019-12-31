@@ -1,5 +1,23 @@
 <h1>Leaderboard</h1>
 
-{{#each top10}}
-    {{this}}
-{{/each}}
+<table>
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each top10}}
+            <tr>
+                <td>{{incr @index}}</td>
+                <td>{{this.name}}</td>
+                <td>{{this.score}}/10</td>
+                <td>{{this.time}}s</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+

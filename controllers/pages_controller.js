@@ -58,13 +58,12 @@ async function recordScore(req, res) {
 
 async function leaderboard(req, res) {
     let scores = await ScorerModel.find();
-    console.log(scores);
     scores.sort((a, b) => {
         if (a.score === b.score) {
             return a.time - b.time
         }
         return b.score - a.score
-    })
+    });
     let top10 = scores.slice(0, 10);
     res.render('leaderboard', { top10 });
 }

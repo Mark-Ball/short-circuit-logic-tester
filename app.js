@@ -1,11 +1,18 @@
 const express = require('express');
-const exphbs = require('express-handlebars')
+const exphbs = require('express-handlebars');
 const routes = require('./routes');
 require('dotenv').config();
 require('./database/connect');
 const app = express();
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+const hbs = exphbs.create({
+    helpers: {
+        incr: function(value) { return value + 1 }
+    },
+    defaultLayout: 'main'
+})
+
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
