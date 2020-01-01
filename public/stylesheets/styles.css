@@ -6,12 +6,12 @@ body {
     max-width: 900px;
 }
 
-h1 {
+h1, h2 {
     font-family: Poppins, sans-serif;
     text-align: center;
 }
 
-h2, h3 {
+h3 {
     font-family: Poppins, sans-serif;
 }
 
@@ -40,6 +40,11 @@ label, li, p, a, th, td, input {
 }
 
 a {
+    color: black;
+    text-decoration: none;
+}
+
+.button {
     background-image: linear-gradient(rgb(160, 180, 214), rgb(126, 159, 218));
     border: 1px solid #D5D5D5;
     border-radius: 3px;
@@ -53,7 +58,7 @@ a {
     width: 200px;
 }
 
-a:hover {
+.button:hover {
     background-image: linear-gradient(rgb(203, 206, 212), rgb(178, 193, 221));
 }
 
