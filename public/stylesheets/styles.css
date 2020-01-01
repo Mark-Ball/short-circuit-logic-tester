@@ -15,6 +15,26 @@ h2, h3 {
     font-family: Poppins, sans-serif;
 }
 
+table {
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 500px;
+}
+
+th {
+    border-bottom: 1px solid black;
+}
+
+tr {
+    line-height: 25px;
+}
+
+tr:hover {
+    background-color: #F5F5F5;
+}
+
 label, li, p, a, th, td, input {
     font-family: Rubik, sans-serif;
 }
