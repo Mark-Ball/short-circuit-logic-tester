@@ -19,12 +19,10 @@
   },
   "homepage": "https://github.com/Mark-Ball/short-circuit-logic-tester#readme",
   "dependencies": {
-    "axios": "^0.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "mongoose": "^5.8.3",
-    "readline-sync": "^1.4.10"
   },
   "devDependencies": {
     "forever": "^1.0.0",
