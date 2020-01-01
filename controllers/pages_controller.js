@@ -10,13 +10,14 @@ function landing(req, res) {
 
 function quiz(req, res) {
     quiz1 = new Quiz();
-    quizScore = 0;
+
     quizTime = 0;
     const { questions } = quiz1;
     res.render('quiz', { questions });
 }
 
 function checkResponses(req, res) {
+    quizScore = 0;
     const { time, responses } = JSON.parse(req.body.data[0]);
     quizTime = time;
     let quizResponse = {

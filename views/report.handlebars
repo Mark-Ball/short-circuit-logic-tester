@@ -1,9 +1,7 @@
 <h1>Report</h1>
 
-<div>
+<div class='flex'>
     <p>Score: {{quizResponse.score}}/10</p>
-</div>
-<div>
     <p>Time: {{quizResponse.time}}s</p>
 </div>
 
@@ -26,11 +24,13 @@
     </tbody>
 </table>
 
-<h3>Enter your name for the leaderboard</h3>
-<form method='POST' action='/leaderboard'>
-    <div>
-        <label for='name'>Name</label>
-        <input type='text' name='name' id='name' />
-    </div>
-    <input type='submit' value='Go to leaderboard' />    
-</form>
+<div class='centered'>
+    <h3>Enter your name for the records</h3>
+    <form method='POST' action='/leaderboard'>
+        <div>
+            <label for='name'>Name</label>
+            <input type='text' name='name' id='name' />
+        </div>
+        <input id='go-to-leaderboard' type='submit' value='Go to leaderboard' />    
+    </form>
+</div>
