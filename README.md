@@ -1,27 +1,39 @@
-# Development plan
+# Javascript Short Circuit Evaluation Tester
 
-## 1. Develop logic for the console
-- question class
-- randomised questions
-- method to check if answer is correct
-- method for scoring
+https://jsshortcircuit.herokuapp.com/
 
-## 2. Testing
-- manual testing
-- test that the questions can always be evaluated by Node
+The JS Short Circuit Tester is an application designed to help you improve your ability to evaluate short circuit logic in Javascript.
 
-## 3. Set up Express app
-- landing page with button to go to game
-- game with timer
-- congratulations page
+The test involves 10 questions with truthy and falsy values and the && or || logical operator.
 
-## 4. Additional features
-- leaderboard (MongoDB)
-- page that shows you which questions you got wrong and right
-- hard mode
-- Heroku hosting
+## Features
 
-## Notable bugs
+### 1. Randomised questions
+
+The questions have three randomised components:
+- the logical operator
+- whether the expression will be a truthy vs falsy value, falsy vs falsy, truthy vs truthy etc
+- the left and right sides of the expression are randomised from a list of truthy or falsy values, depending on which type of question is randomised
+
+This leads to infinite replayability and forces the player to learn the rules of short circuit evaluation, rather than simply memorise answers.
+
+### 2. Answers evaluated by Node.js
+
+All expressions are evaluated by Node.js, which facilitates the randomisation of expressions. Without the ability to programmatically evaluate expressions, each question would have to be given an answer by a human being, which would reduce the number of expressions available in the application.
+
+Evaluation by Node.js also eliminates the potential for human error in determining the correct answers.
+
+### 3. Trick values
+
+The expressions may sometimes use so called 'trick values', which are intended to train the player to recognise values which are often mistaken for truthy when they are falsy or vice versa.
+
+These trick values include strings of falsy values (e.g. 'null', 'undefined'), empty arrays and empty objects, and values which are in other ways similar to falsy values (e.g. 'zero').
+
+### 4. Leaderboard
+
+The results for each quiz can be saved into a Mongo database, which is then used to determine the top 10 scores for the application. The quiz is scored firstly on accuracy, this means that a 10/10 score will always be ranked higher than a 9/10. Equal scores use the time to complete the quiz, measured in hundredths of a second, as a tiebreaker.
+
+## Notable bugs encountered during development
 
 ### 1. Script getting 404 not found
 
@@ -54,45 +66,4 @@ Next go into ```app.js``` and write the following middleware ```app.use(express.
 This will allow the public directory and any sub-directories to be accessible on those endpoints. We must place ```quizScript.js``` inside ```public/scripts/```. Lastly, in the script tag we must reference this location 
 ```HTML
 <script src='/scripts/quizScript.js'></script>
-```
-
-### 2. res.redirect fails after axios post request in backend
-
-This problem can be recreated by having an axios get or post request in the backend.
-```Javascript
-axios.post('/quiz', { responses: responses, time: timeSinceLoad })
-```
-
-This sends a post request to the '/quiz' route with some data. This then hits the checkResponses associated with the route. In function we manipulate the data, then attempt to redirect to another route, but this fails.
-```Javascript
-function checkResponses(req, res) {
-    // program logic
-    res.redirect('/report');
-}
-```
-
-It fails because AJAX cannot change the page location, only send a request and get a response. We need to perform the redirect on the client side. This is done in the ```.then``` block after the ```axios.post```.
-
-Firstly, because we used axios to trigger the checkReponses method, we must send a response in that method. Inside that object we send back the endpoint as a string (redirectUrl).
-```Javascript
-function checkResponses(req, res) {
-    let quizResponse = { 
-        score: 0,
-        time: req.body.time,
-        responses: req.body.responses,
-        questions: [],
-        answers: [],
-        redirectUrl: '/report'
-    };
-
-    // function logic
-    
-    res.send({ quizResponse });
-}
-```
-
-Secondly, in our ```.then```, we use ```window.location``` to redirect.
-```Javascript
-axios.post('/quiz', { responses: responses, time: timeSinceLoad })
-    .then((res) => { window.location = res.data.quizResponse.redirectUrl });
 ```
