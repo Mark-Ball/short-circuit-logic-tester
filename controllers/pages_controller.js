@@ -45,8 +45,9 @@ function checkResponses(req, res) {
 }
 
 async function recordScore(req, res) {
+    const name = req.body.name === '' ? 'Unknown' : req.body.name;
     await ScorerModel.create({
-        name: req.body.name,
+        name: name,
         score: quizScore,
         time: quizTime
     });

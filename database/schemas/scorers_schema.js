@@ -14,7 +14,6 @@ const ScorersSchema = new Schema({
         type: Number,
         required: true
     }
-
 });
 
 module.exports = ScorersSchema;
