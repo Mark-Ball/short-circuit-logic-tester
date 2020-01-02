@@ -17,6 +17,8 @@ document.querySelector('input[type=submit]').addEventListener("click", () => {
     if (questionCounter >= 9) {
         document.querySelector('#data').value = JSON.stringify({ time: timeSinceLoad.toFixed(2), responses: responses });
         document.querySelector('#dataForm').submit();
+        document.querySelector('#leaderboard-form').classList.toggle('hidden');
+        document.querySelector('#loading').classList.toggle('hidden');
     }
     document.querySelector('input[type=text]').value = '';
     toggleHide(questionCounter);
