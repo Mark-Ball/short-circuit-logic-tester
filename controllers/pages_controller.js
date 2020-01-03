@@ -13,12 +13,15 @@ function quiz(req, res) {
 
     quizTime = 0;
     const { questions } = quiz1;
-    res.render('quiz', { questions });
+    res.render('quiz', { questions, quiz1 });
 }
 
 function checkResponses(req, res) {
+    console.log(req.body.quiz);
+    // console.log(Object.keys(req.body.quiz));
+    // console.log(req.body.quiz['0']);
     quizScore = 0;
-    const { time, responses } = JSON.parse(req.body.data[0]);
+    const { time, responses } = JSON.parse(req.body.data);
     quizTime = time;
     let quizResponse = {
         score: 0,

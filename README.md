@@ -41,6 +41,12 @@ Posts can be sent to the '/leaderboard' endpoint, bypassing the entire quiz.
 
 ### 2. The form on the Report page can be resubmitted, creating multiple records in the database
 
+Nothing stopping either 1) reloading of the report page, or 2) identical entries being made in the database.
+
+### 3. Multiple users cannot play at the same time
+
+When the second user accesses the quiz, all the questions are re-randomised. So the first user gets marked on a completely different quiz.
+
 ## Notable bugs encountered during development
 
 ### 1. Script getting 404 not found
