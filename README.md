@@ -33,6 +33,14 @@ These trick values include strings of falsy values (e.g. 'null', 'undefined'), e
 
 The results for each quiz can be saved into a Mongo database, which is then used to determine the top 10 scores for the application. The quiz is scored firstly on accuracy, this means that a 10/10 score will always be ranked higher than a 9/10. Equal scores use the time to complete the quiz, measured in hundredths of a second, as a tiebreaker.
 
+## Unresolved vulnerabilities
+
+### 1. Anyone can send a POST to the endpoint
+
+Posts can be sent to the '/leaderboard' endpoint, bypassing the entire quiz.
+
+### 2. The form on the Report page can be resubmitted, creating multiple records in the database
+
 ## Notable bugs encountered during development
 
 ### 1. Script getting 404 not found

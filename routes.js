@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { celebrate, Joi, errors, Segments } = require('celebrate');
 const PagesController = require('./controllers/pages_controller');
 
 router.get('/', PagesController.landing);
