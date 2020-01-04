@@ -1,5 +1,6 @@
 const Quiz = require('./../classes/Quiz');
 const ScorerModel = require('./../database/models/scorer_model');
+const QuizModel = require('./../database/models/quiz_model');
 let quiz1;
 let quizScore;
 let quizTime;
@@ -8,18 +9,20 @@ function landing(req, res) {
     res.render('landing');
 }
 
-function quiz(req, res) {
+async function quiz(req, res) {
     quiz1 = new Quiz();
+    const { questions } = quiz1;
+    const { _id: quizId } = await QuizModel.create({
+        quiz: quiz1
+    });
 
     quizTime = 0;
-    const { questions } = quiz1;
-    res.render('quiz', { questions, quiz1 });
+    res.render('quiz', { questions, quizId });
 }
 
 function checkResponses(req, res) {
-    console.log(req.body.quiz);
-    // console.log(Object.keys(req.body.quiz));
-    // console.log(req.body.quiz['0']);
+    console.log(req.body.quizId);
+    
     quizScore = 0;
     const { time, responses } = JSON.parse(req.body.data);
     quizTime = time;
